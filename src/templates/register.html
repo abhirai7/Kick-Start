@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="p-4 mt-5 login-section border border-2 rounded rounded-5">
+        <p class="text-center horizon-font fs-1" id="heading"><b>REGISTER</b></p>
+        <div class="container">
+        <form action="{{ url_for('register') }}" method="POST">
+            {{ form.csrf_token }}
+            {% if error %}
+                <p class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle"></i> {{ error }}</p>
+            {% endif %}
+    
+            
+    
+            <div class="mb-3">
+                {{ form.email(class="form-control rounded rounded-0", id="email", placeholder="[*] Enter your Email", **{'aria-describedby': 'emailHelp'}) }}
+                {% if form.email.errors %}
+                    <div class="alert alert-danger mt-2" role="alert">
+                        {% for error in form.email.errors %}
+                            <i class="bi bi-exclamation-circle"></i> {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+    
+            <div class="mb-3">
+                {{ form.password(class="form-control rounded rounded-0", id="password", placeholder="[*] Enter your Password", **{'aria-describedby': 'passwordHelp'}) }}
+                {% if form.password.errors %}
+                    <div class="alert alert-danger mt-2" role="alert">
+                        {% for error in form.password.errors %}
+                            <i class="bi bi-exclamation-circle"></i> {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div id="passwordHelp" class="form-text">Password must contain at least 8 characters.</div>
+            </div>
+    
+            <div class="mb-4">
+                {{ form.confirm_password(class="form-control rounded rounded-0", id="confirm_password", placeholder="[*] Confirm your Password") }}
+                    {% if form.confirm_password.errors %}
+                    <div class="alert alert-danger mt-2" role="alert">
+                        {% for error in form.confirm_password.errors %}
+                            <i class="bi bi-exclamation-circle"></i> {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+
+            
+
+
+            <div class="text-center mb-3">
+                <p class="fs-5">Already have an account? <a href="{{ url_for('login') }}" class="link-secondary">Login here</a></p>
+                {{ form.submit(class="btn btn-secondary rounded rounded-0") }}
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+{% endblock %}

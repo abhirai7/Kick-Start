@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Home</h1>
-<p>Welcome to the home page!</p>
+
+{% if current_user.is_authenticated %}
+<p>Welcome, {{ current_user.email }}!</p>
+<a href="{{ url_for('logout') }}" class="btn btn-secondary rounded rounded-0">Logout</a>
+{% else %}
+<a href="{{ url_for('login') }}" class="btn btn-secondary rounded rounded-0">Login</a>
+{% endif %}
+
 {% endblock %}

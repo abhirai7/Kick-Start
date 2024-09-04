@@ -16,7 +16,7 @@ app = Flask(__name__)
 login_manager = LoginManager(app)
 
 sql = pathlib.Path("sql.sql").read_text()
-conn = sqlite3.connect("database.db")
+conn = sqlite3.connect("database.db", check_same_thread=False)
 conn.executescript(sql)
 
 conn.row_factory = sqlite_row_factory

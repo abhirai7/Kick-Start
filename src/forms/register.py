@@ -27,7 +27,7 @@ class RegisterForm(FlaskForm):
 
         str_email = email.data.lower()
 
-        if User.from_email(self.conn, email=str_email):
+        if User.exists(self.conn, email=str_email):
             raise ValidationError("Email already registered")
 
         return True
