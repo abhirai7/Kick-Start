@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ user.username }}'s Posts</title>
+  </head>
+  <body>
+    <h1>{{ user.username }}'s Posts</h1>
+    <ul>
+      {% for post in posts %}
+        <li>
+          <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

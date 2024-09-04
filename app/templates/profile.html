@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile</title>
+  </head>
+  <body>
+    <h1>Profile</h1>
+    <form action="" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" value="{{ current_user.username }}"><br><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" value="{{ current_user.email }}"><br><br>
+      <input type="submit" value="Save Changes">
+    </form>
+    {% if error %}
+      <p>{{ error }}</p>
+    {% endif %}
+  </body>
+</html>

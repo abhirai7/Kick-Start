@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Post</title>
+  </head>
+  <body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    {% if post.author == current_user %}
+      <form action="{{ url_for('delete_post', post_id=post.id) }}" method="post">
+        <input type="submit" value="Delete Post">
+      </form>
+    {% endif %}
+  </body>
+</html>

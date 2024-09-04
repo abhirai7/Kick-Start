@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Posts</title>
+  </head>
+  <body>
+    <h1>My Posts</h1>
+    <ul>
+      {% for post in posts %}
+        <li>{{ post.title }} ({{ post.created_at }})</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
