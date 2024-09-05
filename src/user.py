@@ -110,6 +110,23 @@ class User(UserMixin):
             created_at=None,
         )
 
+    def get_gig(self, gig_id: int) -> Gig:
+        from .gig import Gig
+
+        cursor = self.conn.execute("SELECT * FROM GIGS WHERE ID = ?", (gig_id,))
+        row = cursor.fetchone()
+        cursor.close()
+        if row is None:
+            err = f"Gig {gig_id} not found"
+            raise ValueError(err)
+
+        return Gig(self.conn, **row) if row else None
+    
+    def delete_gig(self, gig_id: int) -> None:
+        cursor = self.conn.execute("DELETE FROM GIGS WHERE ID = ? AND USER_ID = ?", (gig_id, self.id))
+        self.conn.commit()
+        cursor.close()
+
 
 class Profile:
     def __init__(

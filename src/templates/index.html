@@ -15,10 +15,9 @@
                     Build a unique skillset based on your natural talents and watch your career and life flourish.
                 </p>
                 {% if not current_user.is_authenticated %}
-                    <a href="{{ url_for('register') }}" class="btn btn-outline-secondary btn-lg rounded rounded-0"
-                        type="button">
-                        Sign up
-                    </a>
+                <a href="{{ url_for('register') }}" class="btn btn-outline-secondary btn-lg rounded rounded-0" type="button">
+                    Sign up
+                </a>
                 {% endif %}
             </div>
             <div class="col text-center d-none d-lg-block d-xl-block d-xxl-block">
@@ -29,5 +28,22 @@
 </section>
 <hr>
 
+<div class="container">
+<div class="row">
+    {% for i in range(8) %}
+    <div class="col mb-3">
+        <div class="card border rounded rounded-0" style="width: 18rem;">
+            <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto d-block mt-3" alt="Profile Picture"
+                style="width: 100px">
+            <div class="card-body text-center">
+                <h5 class="card-title">John Doe</h5>
+                <p class="card-text">A passionate developer with expertise in web development, eager to learn and collaborate.</p>
+                <a href="#" class="btn btn-primary">Contact</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
 
 {% endblock %}
