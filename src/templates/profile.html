@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body style="background-color: #f8f9fa;">
+{% extends "base.html" %}
 
+{% import "navbar.html" as navbar %}
+
+{% block content %}
+{{ navbar.navbar(current_user) }}
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
             <div class="card">
                 <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto mt-3" alt="Profile Picture" style="width: 120px; height: 120px;">
                 <div class="card-body text-center">
-                    <h5 class="card-title">John Doe</h5>
+                    <h5 class="card-title">{{ name }}</h5>
                     <p class="card-text">Web Developer</p>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
                     <a href="#" class="btn btn-primary btn-sm">Contact</a>
@@ -71,10 +65,4 @@
         </div>
     </div>
 </div>
-
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock %}
