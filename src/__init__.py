@@ -20,6 +20,9 @@ sql = pathlib.Path("sql.sql").read_text()
 conn = sqlite3.connect("database.db", check_same_thread=False)
 conn.executescript(sql)
 
+with open("src/static/services.json") as f:
+    services: dict = json.load(f)
+
 conn.row_factory = sqlite_row_factory
 
 load_dotenv()
@@ -32,6 +35,3 @@ login_manager.init_app(app)
 
 from .login_manager import *  # noqa
 from .routes import *  # noqa
-
-with open("src/static/services.json") as f:
-    services = json.load(f)

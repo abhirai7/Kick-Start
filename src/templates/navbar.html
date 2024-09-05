@@ -1,9 +1,9 @@
-{% macro navbar(current_user) -%}
+{% macro navbar(current_user, services) -%}
 <navbar class="navbar m-0 p-0 d-flex" style="background-color: #2D3142; padding: 10px 20px; font-size: 18px; font-weight: bold; margin: auto; display: flex; align-items: center;">
     <div class="logo" style="font-size: 24px; font-weight: bold;">
-        <a href="#" style="color: #fff; text-decoration: none; padding: 8px 15px; display: block; font-size: 24px;"
+        <a href="{{ url_for('home') }}" style="color: #fff; text-decoration: none; padding: 8px 15px; display: block; font-size: 24px;"
         onmouseover="this.style.background='#575757';"
-        onmouseout="this.style.background='#2D3142';">FreelancePro</a>
+        onmouseout="this.style.background='#2D3142';">Kick-Start</a>
     </div>
     <div class="search-bar" style="margin: auto; display: flex; align-items: center; padding: 6px; font-size: 14px; border: none; border-radius: 4px; position: relative;">
         <input type="text" id="searchInput" class="px-3" on placeholder="Search talent..." style="padding: 8px 15px; width: 200px; border-radius: 4px; border: 1px solid #ccc;">
@@ -22,21 +22,12 @@
     <a href="{{ url_for('profile') }}" style="color: #fff; text-decoration: none; padding: 8px 15px; display: block;">{{ current_user.email }}</a>
     {% endif %}
 </navbar>
-{% block bottom_script %}
 <script>
     var data = [
-        { id: 1, title: "JavaScript Basics", category: "Programming" },
-        { id: 11, title: "JavaScript Advanced", category: "Programming" },
-        { id: 2, title: "Advanced CSS Techniques", category: "Design" },
-        { id: 3, title: "HTML5 Introduction", category: "Programming" },
-        { id: 4, title: "Responsive Web Design", category: "Design" },
-        { id: 5, title: "Node.js for Beginners", category: "Programming" },
-        { id: 6, title: "UI/UX Principles", category: "Design" },
-        { id: 7, title: "React.js Guide", category: "Programming" },
-        { id: 8, title: "Graphic Design Basics", category: "Design" },
-        { id: 9, title: "Python Programming", category: "Programming" },
-        { id: 10, title: "Flexbox and Grid Layouts", category: "Design" },
-    ]
+    {% for role in services['roles'] %}
+        { id: {{ loop.index }} , title: "{{ role['name'] }}" }{% if not loop.last %},{% endif %}
+    {% endfor %}
+    ];
 
     let currentIndex = -1;  // Track thesearch_result current selection index
 
@@ -119,5 +110,4 @@
 
 </script>
 
-{% endblock %}
 {%- endmacro %}

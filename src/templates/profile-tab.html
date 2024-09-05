@@ -3,19 +3,18 @@
 
 {% block content %}
 
-{{ navbar.navbar(current_user) }}
+{{ navbar.navbar(current_user, services) }}
 
-<div class="container">
+<div class="container-fluid">
     <br>
     <div class="row">
         <div class="col mb-3">
-            <div class="card border rounded rounded-0" style="width: 18rem;">
+            <div class="card border rounded rounded-0 shadow-sm">
                 <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto d-block mt-3" alt="Profile Picture"
                     style="width: 100px">
                 <div class="card-body text-center">
                     <h5 class="card-title">Tech</h5>
-                    <p class="card-text">Tech Info</p>
-                    <!-- <a href="{{ url_for('register') }}" class="btn btn-primary">Contact</a> -->
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur error explicabo commodi. Modi, explicabo atque!</p>
                 </div>
             </div>
         </div>
@@ -25,7 +24,7 @@
     <br>
 
     <div class="row">
-        {% for i in range(8) %}
+        {% for i in range(16) %}
         <div class="col mb-3">
             <div class="card border rounded rounded-0" style="width: 18rem;">
                 <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto d-block mt-3" alt="Profile Picture"

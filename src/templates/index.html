@@ -2,8 +2,19 @@
 {% import "navbar.html" as navbar %}
 
 {% block content %}
+{% block stylesheets %}
+<style>
+    .zoom {
+        transition: transform .2s;
+    }
 
-{{ navbar.navbar(current_user) }}
+    .zoom:hover {
+        transform: scale(1.1);
+    }
+</style>
+{% endblock %}
+
+{{ navbar.navbar(current_user, services) }}
 <section style="font-size: small;padding: 10%;background-color: rgb(248,249,250);">
     <div class="container-fluid container-title pb-7p">
         <div class="row">
@@ -30,14 +41,12 @@
 
 <div class="container">
 <div class="row">
-    {% for i in range(8) %}
+    {% for role in services['roles'] %}
     <div class="col mb-3">
-        <div class="card border rounded rounded-0" style="width: 18rem;">
+        <div class="card zoom border rounded rounded-3 shadow-sm" style="width: 18rem;">
             <div class="card-body text-center">
-                <h5 class="card-title">Developer Domain</h5>
-                <p class="card-text">A passionate developer with expertise in web development, eager to learn and collaborate.</p>
-                <i class="fa-solid fa-arrow-right"></i>
-                <!-- <a href="{{ url_for('profile_tab') }}" class="btn btn-primary">View</a> -->
+                <h5 class="card-title">{{ role['name'] }}</h5>
+                <a href="{{ url_for(role['link'].replace('-', '_')) }}" class="stretched-link"></a>
             </div>
         </div>
     </div>
