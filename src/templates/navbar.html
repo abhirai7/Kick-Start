@@ -15,11 +15,13 @@
     <a href="{{ url_for('login') }}" style="color: #fff; text-decoration: none; padding: 8px 15px; display: block;"
     onmouseover="this.style.background='#575757';"
     onmouseout="this.style.background='#2D3142';">Login</a>
-    {% endif %}
     
     <a href="{{ url_for('register') }}" style="color: #fff; text-decoration: none; padding: 8px 15px; display: block;"
     onmouseover="this.style.background='#575757';"
     onmouseout="this.style.background='#2D3142';">Sign Up</a>
+    {% else %}
+    <a href="{{ url_for('profile') }}" style="color: #fff; text-decoration: none; padding: 8px 15px; display: block;">{{ current_user.email }}</a>
+    {% endif %}
 </navbar>
 
 {%- endmacro %}
