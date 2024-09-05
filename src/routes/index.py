@@ -24,3 +24,8 @@ def home():
 @login_required
 def profile():
     return render_template("profile.html", name="RITIK", current_user=current_user)
+
+
+@app.route("/profile-tab")
+def profile_tab():
+    return render_template("profile-tab.html", current_user=current_user)

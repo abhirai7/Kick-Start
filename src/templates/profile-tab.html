@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% import "navbar.html" as navbar %}
+
+{% block content %}
+
+{{ navbar.navbar(current_user) }}
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col mb-3">
+            <div class="card border rounded rounded-0" style="width: 18rem;">
+                <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto d-block mt-3" alt="Profile Picture"
+                    style="width: 100px">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Tech</h5>
+                    <p class="card-text">Tech Info</p>
+                    <!-- <a href="{{ url_for('register') }}" class="btn btn-primary">Contact</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+
+    <div class="row">
+        {% for i in range(8) %}
+        <div class="col mb-3">
+            <div class="card border rounded rounded-0" style="width: 18rem;">
+                <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto d-block mt-3" alt="Profile Picture"
+                    style="width: 100px">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Dev1</h5>
+                    <p class="card-text">A passionate developer with expertise in web development, eager to learn and collaborate.</p>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">Contact</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+    
+{% endblock %}
