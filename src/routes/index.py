@@ -15,3 +15,8 @@ def index():
 @app.route("/home")
 def home():
     return redirect(url_for("index"))
+
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html", name="RITIK", current_user=current_user)
