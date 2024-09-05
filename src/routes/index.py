@@ -3,7 +3,7 @@ from __future__ import annotations
 from flask import redirect, render_template, session, url_for
 from flask_login import current_user, login_required
 
-from src import app, conn
+from src import app, conn, services
 from src.gig import Gig
 
 
@@ -11,7 +11,7 @@ from src.gig import Gig
 @app.route("/index")
 def index():
     return render_template(
-        "index.html", current_user=current_user, session=session, gigs=Gig.all(conn)
+        "index.html", current_user=current_user, session=session, gigs=Gig.all(conn), services=services
     )
 
 

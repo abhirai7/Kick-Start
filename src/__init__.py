@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import os
 import pathlib
 import sqlite3
@@ -31,3 +32,6 @@ login_manager.init_app(app)
 
 from .login_manager import *  # noqa
 from .routes import *  # noqa
+
+with open("src/static/services.json") as f:
+    services = json.load(f)

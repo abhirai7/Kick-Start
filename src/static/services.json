@@ -1,0 +1,206 @@
+{
+    "roles": [
+        {
+            "name": "Frontend Developer",
+            "link": "frontend-developer"
+        },
+        {
+            "name": "Backend Developer",
+            "link": "backend-developer"
+        },
+        {
+            "name": "DevOps Engineer",
+            "link": "devops-engineer"
+        },
+        {
+            "name": "Full Stack Developer",
+            "link": "full-stack-developer"
+        },
+        {
+            "name": "AI & Data Scientist",
+            "link": "ai-data-scientist"
+        },
+        {
+            "name": "Data Analyst",
+            "link": "data-analyst"
+        },
+        {
+            "name": "Android Developer",
+            "link": "android-developer"
+        },
+        {
+            "name": "iOS Developer",
+            "link": "ios-developer"
+        },
+        {
+            "name": "PostgreSQL",
+            "link": "postgresql"
+        },
+        {
+            "name": "Blockchain Developer",
+            "link": "blockchain-developer"
+        },
+        {
+            "name": "QA Engineer",
+            "link": "qa-engineer"
+        },
+        {
+            "name": "Software Architect",
+            "link": "software-architect"
+        },
+        {
+            "name": "Cyber Security Specialist",
+            "link": "cyber-security-specialist"
+        },
+        {
+            "name": "UX/UI Designer",
+            "link": "ux-ui-designer"
+        },
+        {
+            "name": "Game Developer",
+            "link": "game-developer"
+        },
+        {
+            "name": "Technical Writer",
+            "link": "technical-writer"
+        },
+        {
+            "name": "MLOps Engineer",
+            "link": "mlops-engineer"
+        },
+        {
+            "name": "Product Manager",
+            "link": "product-manager"
+        }
+    ],
+    "skills": [
+        {
+            "name": "Computer Science",
+            "link": "computer-science"
+        },
+        {
+            "name": "React",
+            "link": "react"
+        },
+        {
+            "name": "Vue",
+            "link": "vue"
+        },
+        {
+            "name": "Angular",
+            "link": "angular"
+        },
+        {
+            "name": "JavaScript",
+            "link": "javascript"
+        },
+        {
+            "name": "Node.js",
+            "link": "node-js"
+        },
+        {
+            "name": "TypeScript",
+            "link": "typescript"
+        },
+        {
+            "name": "Python",
+            "link": "python"
+        },
+        {
+            "name": "SQL",
+            "link": "sql"
+        },
+        {
+            "name": "System Design",
+            "link": "system-design"
+        },
+        {
+            "name": "API Design",
+            "link": "api-design"
+        },
+        {
+            "name": "ASP.NET Core",
+            "link": "asp-net-core"
+        },
+        {
+            "name": "Java",
+            "link": "java"
+        },
+        {
+            "name": "C++",
+            "link": "c-plus-plus"
+        },
+        {
+            "name": "Flutter",
+            "link": "flutter"
+        },
+        {
+            "name": "Spring Boot",
+            "link": "spring-boot"
+        },
+        {
+            "name": "Go",
+            "link": "go"
+        },
+        {
+            "name": "Rust",
+            "link": "rust"
+        },
+        {
+            "name": "GraphQL",
+            "link": "graphql"
+        },
+        {
+            "name": "Design & Architecture",
+            "link": "design-architecture"
+        },
+        {
+            "name": "Design System",
+            "link": "design-system"
+        },
+        {
+            "name": "React Native",
+            "link": "react-native"
+        },
+        {
+            "name": "AWS",
+            "link": "aws"
+        },
+        {
+            "name": "Code Review",
+            "link": "code-review"
+        },
+        {
+            "name": "Docker",
+            "link": "docker"
+        },
+        {
+            "name": "Kubernetes",
+            "link": "kubernetes"
+        },
+        {
+            "name": "Linux",
+            "link": "linux"
+        },
+        {
+            "name": "MongoDB",
+            "link": "mongodb"
+        },
+        {
+            "name": "Prompt Engineering",
+            "link": "prompt-engineering"
+        },
+        {
+            "name": "Terraform",
+            "link": "terraform"
+        },
+        {
+            "name": "Data Structures & Algorithms",
+            "link": "data-structures-algorithms"
+        },
+        {
+            "name": "Git and Github",
+            "link": "git-and-github"
+        }
+    ]
+}
