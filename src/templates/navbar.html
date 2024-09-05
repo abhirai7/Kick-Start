@@ -1,31 +1,115 @@
 {% macro navbar(current_user) -%}
-
-<navbar class="navbar m-0 p-0 d-flex  " style="background-color:  #2D3142; padding: 10px 20px;font-size: 18px;font-weight: bold;margin: auto;align-items: center;";>
-    <div class="logo font-size: 24px;font-weight: bold;">
-        <a href="{{ url_for('home') }}" style = "color: #fff;
-        padding: 8px 15px;
-        display: block; font-size: 24px;"
+<navbar class="navbar m-0 p-0 d-flex" style="background-color: #2D3142; padding: 10px 20px; font-size: 18px; font-weight: bold; margin: auto; display: flex; align-items: center;">
+    <div class="logo" style="font-size: 24px; font-weight: bold;">
+        <a href="#" style="color: #fff; text-decoration: none; padding: 8px 15px; display: block; font-size: 24px;"
         onmouseover="this.style.background='#575757';"
         onmouseout="this.style.background='#2D3142';">FreelancePro</a>
     </div>
-    <div class="search-bar" style="margin: auto;display: flex;align-items: center; padding: 6px;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px; ">
-        <input type="text" class="form-control px-3" placeholder="Search talent...">
+
+    <div class="search-bar" style="margin: auto; display: flex; align-items: center; padding: 6px; font-size: 14px; border: none; border-radius: 4px; position: relative;">
+        <input type="text" id="searchInput" class="px-3" placeholder="Search talent..." style="padding: 8px 15px; width: 200px; border-radius: 4px; border: 1px solid #ccc;">
+        <ul class="suggestions" id="suggestionsList" style="list-style: none; padding: 0; margin: 0; position: absolute; top: 100%; left: 0; right: 0; z-index: 1000; background-color: #fff; border: 1px solid #ccc; border-radius: 4px; max-height: 150px; overflow-y: auto; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); display: none;"></ul>
     </div>
+
     {% if not current_user.is_authenticated %}
-    <a href="{{ url_for('login') }}" style="color: #fff;
-        padding: 8px 15px;
-        display: block;"
-        onmouseover="this.style.background='#575757';"
-        onmouseout="this.style.background='#2D3142';">Login</a>
-        {% endif %}
-        <a href="{{ url_for('register') }}" style="color: #fff;
-        padding: 8px 15px;
-        display: block;"
-        onmouseover="this.style.background='#575757';"
-        onmouseout="this.style.background='#2D3142';">Sign Up</a>
+    <a href="{{ url_for('login') }}" style="color: #fff; text-decoration: none; padding: 8px 15px; display: block;"
+    onmouseover="this.style.background='#575757';"
+    onmouseout="this.style.background='#2D3142';">Login</a>
+    {% endif %}
+    
+    <a href="{{ url_for('register') }}" style="color: #fff; text-decoration: none; padding: 8px 15px; display: block;"
+    onmouseover="this.style.background='#575757';"
+    onmouseout="this.style.background='#2D3142';">Sign Up</a>
 </navbar>
+
+<script>
+    const data = [
+        { id: 1, title: "JavaScript Basics", category: "Programming" },
+        { id: 11, title: "JavaScript Advanced", category: "Programming" },
+        { id: 2, title: "Advanced CSS Techniques", category: "Design" },
+        { id: 3, title: "HTML5 Introduction", category: "Programming" },
+        { id: 4, title: "Responsive Web Design", category: "Design" },
+        { id: 5, title: "Node.js for Beginners", category: "Programming" },
+        { id: 6, title: "UI/UX Principles", category: "Design" },
+        { id: 7, title: "React.js Guide", category: "Programming" },
+        { id: 8, title: "Graphic Design Basics", category: "Design" },
+        { id: 9, title: "Python Programming", category: "Programming" },
+        { id: 10, title: "Flexbox and Grid Layouts", category: "Design" }
+    ];
+
+    let currentIndex = -1;  // Track the current selection index
+
+    // Elements
+    const searchInput = document.getElementById('searchInput');
+    const suggestionsList = document.getElementById('suggestionsList');
+
+    // Event Listener for typing
+    searchInput.addEventListener('input', handleInput);
+
+    // Event Listener for arrow keys and enter key
+    searchInput.addEventListener('keydown', handleKeyDown);
+
+    function handleInput() {
+        const query = searchInput.value.trim().toLowerCase();
+        suggestionsList.innerHTML = ''; // Clear previous suggestions
+        currentIndex = -1;  // Reset the index on new input
+
+        if (query === '') {
+            suggestionsList.style.display = 'none';
+            return;
+        }
+
+        // Simple case-insensitive substring match
+        const results = data.filter(item => item.title.toLowerCase().includes(query));
+
+        if (results.length > 0) {
+            results.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item.title;
+                li.style.padding = "10px";
+                li.style.cursor = "pointer";
+                li.style.borderBottom = "1px solid #ccc";
+                li.addEventListener('click', () => {
+                    searchInput.value = item.title;  // Select the suggestion
+                    suggestionsList.innerHTML = '';  // Clear suggestions after selection
+                    suggestionsList.style.display = 'none';
+                });
+                suggestionsList.appendChild(li);
+            });
+            suggestionsList.style.display = 'block';
+        } else {
+            suggestionsList.style.display = 'none';
+        }
+    }
+
+    function handleKeyDown(e) {
+        const items = suggestionsList.getElementsByTagName('li');
+        if (suggestionsList.style.display === 'block' && items.length > 0) {
+            if (e.key === 'ArrowDown') {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateHighlight(items);
+            } else if (e.key === 'ArrowUp') {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateHighlight(items);
+            } else if (e.key === 'Enter' && currentIndex > -1) {
+                searchInput.value = items[currentIndex].textContent;  // Select the highlighted suggestion
+                suggestionsList.innerHTML = '';  // Clear suggestions after selection
+                suggestionsList.style.display = 'none';
+            }
+        }
+    }
+
+    function updateHighlight(items) {
+        // Remove active class from all items
+        for (let i = 0; i < items.length; i++) {
+            items[i].style.backgroundColor = '';
+            items[i].style.color = '';
+        }
+
+        // Highlight the current item
+        items[currentIndex].style.backgroundColor = '#3498db';
+        items[currentIndex].style.color = 'white';
+    }
+</script>
 
 {%- endmacro %}

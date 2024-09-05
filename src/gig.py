@@ -36,7 +36,7 @@ class Gig:
         return User.get(self.conn, self.user_id)
 
     @staticmethod
-    def all(conn: sqlite3.Connection, *, user_id: int | None) -> list[Gig]:
+    def all(conn: sqlite3.Connection, *, user_id: int | None = None) -> list[Gig]:
         if user_id is None:
             cursor = conn.execute("SELECT * FROM GIGS")
         else:
