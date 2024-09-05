@@ -1,12 +1,9 @@
 {% extends "base.html" %}
+{% import "navbar.html" as navbar %}
 
 {% block content %}
 
-{% if current_user.is_authenticated %}
-<p>Welcome, {{ current_user.email }}!</p>
-<a href="{{ url_for('logout') }}" class="btn btn-secondary rounded rounded-0">Logout</a>
-{% else %}
-<a href="{{ url_for('login') }}" class="btn btn-secondary rounded rounded-0">Login</a>
-{% endif %}
+{{ navbar.navbar(current_user) }}
+
 
 {% endblock %}

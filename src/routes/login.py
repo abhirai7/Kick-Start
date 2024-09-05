@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from flask import redirect, render_template, url_for
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 
 from src import app, conn
 from src.forms import LoginForm
@@ -26,6 +26,7 @@ def login():
 
 
 @app.route("/logout")
+@login_required
 def logout():
     logout_user()
     return redirect(url_for("index"))

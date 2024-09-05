@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import contextlib
 import sqlite3
 from typing import TYPE_CHECKING
 
 from flask_login import UserMixin
 
 from .utils import Password
+
+if TYPE_CHECKING:
+    from .gig import Gig
 
 
 class User(UserMixin):
@@ -19,11 +23,8 @@ class User(UserMixin):
         self.email = email
         self.password = None
 
-        try:
+        with contextlib.suppress(ValueError):
             self.profile = Profile.get(conn, id)
-        except ValueError:
-            pass
-
         self.created_at = kwargs.pop("created_at", None)
 
     @classmethod
@@ -55,7 +56,7 @@ class User(UserMixin):
             raise ValueError(err)
 
         return cls(conn, **row) if row else None
-    
+
     @classmethod
     def exists(cls, conn: sqlite3.Connection, *, email: str) -> bool:
         cursor = conn.execute("SELECT * FROM USERS WHERE EMAIL = ?", (email,))
@@ -76,6 +77,38 @@ class User(UserMixin):
 
         user_id = cursor.lastrowid
         return cls(conn, id=user_id, email=email, password=hashed_password)
+
+    def add_gig_review(self, gig: Gig, *, rating: int, review: str) -> None:
+        cursor = self.conn.execute(
+            "INSERT INTO GIG_REVIEWS (GIG_ID, USER_ID, RATING, REVIEW) VALUES (?, ?, ?, ?)",
+            (gig.id, self.id, rating, review),
+        )
+        self.conn.commit()
+        cursor.close()
+
+    def add_gig(
+        self, *, title: str, description: str, price: float, picture: bytes
+    ) -> Gig:
+        from .gig import Gig
+
+        cursor = self.conn.execute(
+            "INSERT INTO GIGS (USER_ID, TITLE, DESCRIPTION, PRICE, PICTURE) VALUES (?, ?, ?, ?, ?)",
+            (self.id, title, description, price, picture),
+        )
+        self.conn.commit()
+        cursor.close()
+
+        gig_id = cursor.lastrowid
+        return Gig(
+            self.conn,
+            id=gig_id,
+            user_id=self.id,
+            title=title,
+            description=description,
+            price=price,
+            picture=picture,
+            created_at=None,
+        )
 
 
 class Profile:
@@ -190,4 +223,3 @@ class Profile:
 
         def set_timezone(self, timezone: str) -> None:
             ...
-
