@@ -12,7 +12,7 @@
     font-size: 14px;
     border: none;
     border-radius: 4px; ">
-        <input type="text" class="px-3" placeholder="Search talent...">
+        <input type="text" class="form-control px-3" placeholder="Search talent...">
     </div>
     {% if not current_user.is_authenticated %}
     <a href="{{ url_for('login') }}" style="color: #fff;

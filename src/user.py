@@ -132,6 +132,15 @@ class User(UserMixin):
     def get_gigs(self, user_id: int) -> list[Gig]:
         return Gig.all(self.conn, user_id=user_id)
 
+    @property
+    def json(self) -> dict:
+        return {
+            "id": self.id,
+            "email": self.email,
+            "created_at": self.created_at,
+            "profile": self.profile.json,
+            "gigs": [gig.json for gig in self.get_gigs(self.id)],
+        }
 
 class Profile:
     def __init__(
@@ -245,3 +254,21 @@ class Profile:
 
         def set_timezone(self, timezone: str) -> None:
             ...
+
+    @property
+    def json(self):
+        return {
+            "user_id": self.user_id,
+            "picture": self.picture,
+            "role": self.role,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "email": self.email,
+            "phone": self.phone,
+            "address": self.address,
+            "skills": self.skills,
+            "experience": self.experience,
+            "website": self.website,
+            "language": self.language,
+            "timezone": self.timezone,
+        }
