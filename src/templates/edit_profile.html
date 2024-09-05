@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% import "navbar.html" as navbar %}
+
+{% block content %}
+{{ navbar.navbar(current_user) }}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card rounded rounded-0">
+                <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle mx-auto mt-3" alt="Profile Picture" style="width: 120px; height: 120px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ form.first_name.data }} {{ form.last_name.data }}</h5>
+                    <p class="card-text">Web Developer</p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Location: {{ form.address.data }}</li>
+                    <li class="list-group-item">Email: {{ form.email.data }}</li>
+                    <li class="list-group-item">Phone: {{ form.phone.data }}</li>
+                    <li class="list-group-item">Website: {{ form.website.data }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <form method="POST" action="{{ url_for('edit_profile') }}">
+                {{ form.hidden_tag() }}
+                <div class="card mb-3 rounded rounded-0">
+                    <div class="card-header">
+                        <h5>Edit Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            {{ form.first_name(class="form-control rounded rounded-0") }}
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            {{ form.last_name(class="form-control rounded rounded-0") }}
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            {{ form.email(class="form-control rounded rounded-0") }}
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            {{ form.phone(class="form-control rounded rounded-0") }}
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            {{ form.address(class="form-control rounded rounded-0") }}
+                        </div>
+                        <div class="form-group">
+                            <label for="website">Website</label>
+                            {{ form.website(class="form-control rounded rounded-0") }}
+                        </div>
+                        <div class="form-group">
+                            <label for="skills">Skills</label>
+                            {{ form.skills(class="form-control rounded rounded-0") }}
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Experience</label>
+                            {{ form.experience(class="form-control rounded rounded-0") }}
+                        </div>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            {{ form.language(class="form-control rounded rounded-0") }}
+                        </div>
+                        <div class="form-group">
+                            <label for="timezone">Timezone</label>
+                            {{ form.timezone(class="form-control rounded rounded-0") }}
+                        </div>
+                        <div class="form-group mt-3">
+                            {{ form.submit(class="btn btn-primary rounded rounded-0") }}
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
