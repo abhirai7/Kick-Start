@@ -24,3 +24,11 @@ class Gig:
         self.price = price
         self.picture = picture
         self.created_at = created_at
+
+    @staticmethod
+    def all(conn: sqlite3.Connection, *, user_id: int) -> list[Gig]:
+        cursor = conn.execute("SELECT * FROM GIGS WHERE USER_ID = ?", (user_id,))
+        rows = cursor.fetchall()
+        cursor.close()
+
+        return [Gig(conn, **row) for row in rows]

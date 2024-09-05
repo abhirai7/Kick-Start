@@ -121,11 +121,16 @@ class User(UserMixin):
             raise ValueError(err)
 
         return Gig(self.conn, **row) if row else None
-    
+
     def delete_gig(self, gig_id: int) -> None:
-        cursor = self.conn.execute("DELETE FROM GIGS WHERE ID = ? AND USER_ID = ?", (gig_id, self.id))
+        cursor = self.conn.execute(
+            "DELETE FROM GIGS WHERE ID = ? AND USER_ID = ?", (gig_id, self.id)
+        )
         self.conn.commit()
         cursor.close()
+
+    def get_gigs(self, user_id: int) -> list[Gig]:
+        return Gig.all(self.conn, user_id=user_id)
 
 
 class Profile:

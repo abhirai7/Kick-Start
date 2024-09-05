@@ -55,3 +55,11 @@ def gigs_delete(id: int):
     current_user.delete_gig(id)
 
     return redirect(url_for("home"))
+
+
+@app.route("/gigs/user/<int:id>/all")
+@login_required
+def gigs_user_all(id: int):
+    gigs = current_user.get_gigs(id)
+
+    return render_template("gigs.html", gigs=gigs, current_user=current_user)
