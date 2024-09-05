@@ -57,3 +57,6 @@ class Gig:
             "picture": self.picture,
             "created_at": self.created_at,
         }
+
+
+# gig.json['title'] 
